@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { uriToBase64 } from './src/utils/convertTo64';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -16,15 +17,14 @@ export default function App() {
 
   useEffect(() => {
     console.log("Sending photo to RestAPI");
-    console.log(photo)
   }, [photo])
 
   const snap = async () => {
     if (this.camera) {
       const photo = await this.camera.takePictureAsync();
-      // const base64Img = uriToBase64(photo);
-      //setPhoto(base64Img);
-      console.log("test");
+      const uri = photo.uri;
+      const base64 = uriToBase64(uri);
+      setPhoto(base64)
     }
   };
 
