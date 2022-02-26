@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { uriToBase64 } from './src/utils/convertTo64';
+import { retrievePlantData } from './src/services/plants';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -15,16 +16,16 @@ export default function App() {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log("Sending photo to RestAPI");
-  }, [photo])
-
   const snap = async () => {
     if (this.camera) {
       const photo = await this.camera.takePictureAsync();
       const uri = photo.uri;
-      const base64 = uriToBase64(uri);
-      setPhoto(base64)
+      const base64 = await uriToBase64(uri);
+      const data = {
+        "base64": base64,
+      }
+      console.log(retrievePlantData(data));
+      // setPhoto(base64)
     }
   };
 
