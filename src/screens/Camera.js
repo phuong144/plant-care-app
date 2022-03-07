@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Camera } from 'expo-camera';
-import { uriToBase64 } from '../utils/convertTo64'
-import { retrievePlantData } from '../services/plants';
-
 import { StatusBar } from 'expo-status-bar'
+import { uriToBase64 } from '../utils/convertTo64'
+
 import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image } from 'react-native'
 let camera;
 
-export default function CameraScreen() {
+export default function CameraScreen({ navigation }) {
   const [startCamera, setStartCamera] = React.useState(false)
   const [previewVisible, setPreviewVisible] = React.useState(false)
   const [capturedImage, setCapturedImage] = React.useState(null)
@@ -31,10 +30,9 @@ export default function CameraScreen() {
   const __usePhoto = async () => {
     const uri = capturedImage.uri;
     const base64 = await uriToBase64(uri);
-    const data = {
-      "base64": base64,
-    };
-    console.log(retrievePlantData(data));
+    navigation.navigate('PlantInfo', {
+      "base64": base64
+    })
   }
 
   const __retakePicture = () => {
@@ -204,6 +202,7 @@ export default function CameraScreen() {
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {
