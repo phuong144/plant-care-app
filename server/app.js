@@ -11,7 +11,7 @@ var plantsRouter = require('./routes/plants');
 var app = express();
 
 app.use(logger('dev'));
-app.use(express.json({ limit: 10000000000 }));
+app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

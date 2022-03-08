@@ -21,12 +21,14 @@ export default function CameraScreen({ navigation }) {
       Alert.alert('Access denied')
     }
   }
+
   const __takePicture = async () => {
     const photo = await camera.takePictureAsync();
     setPreviewVisible(true);
     //setStartCamera(false)
     setCapturedImage(photo);
   }
+
   const __usePhoto = async () => {
     const uri = capturedImage.uri;
     const base64 = await uriToBase64(uri);
@@ -50,6 +52,7 @@ export default function CameraScreen({ navigation }) {
       setFlashMode('auto')
     }
   }
+
   const __switchCamera = () => {
     if (cameraType === 'back') {
       setCameraType('front')
