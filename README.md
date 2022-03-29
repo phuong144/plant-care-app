@@ -1,6 +1,6 @@
 # Planter
 
-Notice a plant in your household that's starting to wilt despite your best efforts to take care of it? Maybe it's a plant you forgot about and you want to revitalize it, but you're having difficulty identifying the plant or knowing how to best take care of it. 
+Notice a plant in your household that's starting to wilt despite your best efforts to take care of it? Maybe it's a plant you'd want to revitalize, but you're having difficulty identifying the plant or knowing how to best take care of it. 
 
 Planter is a mobile application that gives you information on how to best take care of a plant simply by taking a picture of it.
 
@@ -14,6 +14,6 @@ Expo was the ideal technology since this app was a small scale project that need
 
 # Credits / Takeaways
 
-My friend, Vania Gunawan, was the inspiration for building this application. She introduced to me that she had plants that she didn't know how to best take care of, let alone identify the plant to even search up results. Although there exists some popular plant apps, none had the feature to simply scan the plant and give insight on how to best take care of it, which is why I built Planter!
+My friend, Vania Gunawan, was the inspiration for building this application. She introduced to me that she had plants that she didn't know how to best take care of, let alone identify the plant to even search up results. Although there exists some popular plant apps, none that she or I were are of had the feature to simply scan the plant and give insight on how to best take care of it, which is why I built Planter!
 
 Planter was a personal project and building it out was super fun! I got to integrate 3rd party APIs and learned more about web scraping.

@@ -8,9 +8,9 @@ const scraperObject = {
     await page.goto(url);
     // Wait for the required DOM to be rendered
     await page.waitForSelector('.site-content');
-    // Get the link to all the required books
+    // Get the link to the plant care site
     let dataUrl = await page.$$eval('main > article', links => {
-      // Make sure the book to be scraped is in stock
+      // Make sure the scraped link includes the string 'care'
       links = links.filter(link => link.querySelector('header > h2 > a').textContent.toLowerCase().includes('care'))
       // Extract the links from the data
       links = links.map(el => el.querySelector('header > h2 > a').href)
