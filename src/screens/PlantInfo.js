@@ -21,7 +21,14 @@ export default function PlantInfo({ route, navigation }) {
   return (
     <View>
       {Object.keys(plantData).length == 0 ?
-        <Text>Loading...</Text> :
+        <View>
+          <Image
+            style={styles.image}
+            source={require('../../assets/Plant.png')}
+          />
+          <Text style={styles.loading}>Loading...</Text>
+        </View>
+        :
         <View>
           <Text style={styles.plantName}>
             Plant name: {plantData.plantData.suggestions[0]['plant_name']}
@@ -51,7 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 10
   },
-
   image: {
     width: 250,
     height: 250,
@@ -59,14 +65,15 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginBottom: 10
   },
-
   description: {
     margin: 10
   },
-
   url: {
     color: 'green',
     backgroundColor: 'transparent',
     margin: 10
+  },
+  loading: {
+    textAlign: 'center',
   }
 });
