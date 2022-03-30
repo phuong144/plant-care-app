@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Camera } from 'expo-camera';
 import { StatusBar } from 'expo-status-bar'
 import { uriToBase64 } from '../utils/convertTo64'
+import * as ImagePicker from 'expo-image-picker';
 
-import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image, Button } from 'react-native'
 let camera;
 
 export default function CameraScreen({ navigation }) {
@@ -60,6 +61,21 @@ export default function CameraScreen({ navigation }) {
       setCameraType('back')
     }
   }
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setPreviewVisible(true);
+      setCapturedImage(result);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -144,6 +160,19 @@ export default function CameraScreen({ navigation }) {
                     justifyContent: 'space-between'
                   }}
                 >
+                  <View
+                    style={{
+                      flex: 1,
+                    }}
+                  >
+                    <Button
+                      onPress={pickImage}
+                      title='Select Image'
+                      style={{
+
+                      }}
+                    />
+                  </View>
                   <View
                     style={{
                       alignSelf: 'center',
