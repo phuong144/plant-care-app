@@ -154,30 +154,25 @@ export default function CameraScreen({ navigation }) {
                     position: 'absolute',
                     bottom: 0,
                     flexDirection: 'row',
-                    flex: 1,
                     width: '100%',
-                    padding: 20,
-                    justifyContent: 'space-between'
+                    marginBottom: 20
                   }}
                 >
                   <View
                     style={{
-                      flex: 1,
+                      position: 'absolute',
                     }}
                   >
                     <Button
                       onPress={pickImage}
                       title='Select Image'
-                      style={{
-
-                      }}
                     />
                   </View>
                   <View
                     style={{
                       alignSelf: 'center',
+                      alignItems: 'center',
                       flex: 1,
-                      alignItems: 'center'
                     }}
                   >
                     <TouchableOpacity
@@ -185,9 +180,9 @@ export default function CameraScreen({ navigation }) {
                       style={{
                         width: 70,
                         height: 70,
-                        bottom: 0,
+                        bottom: 10,
                         borderRadius: 50,
-                        backgroundColor: '#fff'
+                        backgroundColor: '#fff',
                       }}
                     />
                   </View>
