@@ -161,6 +161,7 @@ export default function CameraScreen({ navigation }) {
                   <View
                     style={{
                       position: 'absolute',
+                      zIndex: 1
                     }}
                   >
                     <Button
