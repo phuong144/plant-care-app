@@ -8,6 +8,12 @@ const plantScrapper = require('../src/scrape/plantScrapper');
 // POST retrieve plant data given plant image
 router.post('/', async function (req, res, next) {
   const plantData = await plants.retrievePlantData(req.body);
+  if (plantData == null) {
+    res.status(500).json({
+      "success": false,
+    })
+    return;
+  }
   const plantName = plantData.suggestions[0]['plant_name'];
   const url = await plantScrapper(plantName);
   res.json({

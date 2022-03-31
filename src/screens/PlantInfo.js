@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Linking, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Linking, Image } from 'react-native';
 import { retrievePlantData } from '../services/plants';
-import { Image, CacheManager } from "react-native-expo-image-cache";
+import { CacheManager } from "react-native-expo-image-cache";
 
 export default function PlantInfo({ route, navigation }) {
   const [plantData, setPlantData] = useState({});
@@ -13,6 +13,11 @@ export default function PlantInfo({ route, navigation }) {
       "base64": base64,
     }
     const data = await retrievePlantData(dataObj);
+    if (data == null) {
+      alert('Please retake photo');
+      navigation.navigate("Camera")
+      return;
+    }
     const path = await CacheManager.get(plantData.plantData.images[0].url).getPath();
     setPlantData(data);
     setCachePlantImg(path);
@@ -47,7 +52,9 @@ export default function PlantInfo({ route, navigation }) {
           </Text>
           <Image
             style={styles.image}
-            uri={cachePlantImg}
+            source={{
+              uri: cachePlantImg
+            }}
           />
           <Text style={styles.description} testID='plant-description'>
             {plantData.plantData.suggestions[0]['plant_details']['wiki_description'].value.split('.')[0]}

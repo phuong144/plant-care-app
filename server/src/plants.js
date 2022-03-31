@@ -33,7 +33,7 @@ exports.retrievePlantData = async ({ base64 }) => {
 
     } catch (error) {
       console.error('Error: ', error)
-      throw error;
+      return null;
     }
   }
 

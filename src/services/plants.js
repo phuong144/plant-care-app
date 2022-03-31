@@ -13,7 +13,8 @@ export const retrievePlantData = async (dataObj) => {
       const plantData = res.data;
       return plantData;
     })
-    .catch(err =>
-      console.error(err)
-    );
+    .catch(err => {
+      console.error(err);
+      return null;
+    })
 };
