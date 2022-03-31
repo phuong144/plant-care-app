@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Camera } from 'expo-camera';
 import { StatusBar } from 'expo-status-bar'
 import { uriToBase64 } from '../utils/convertTo64'
+import * as ImagePicker from 'expo-image-picker';
 
-import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image, Button } from 'react-native'
 let camera;
 
 export default function CameraScreen({ navigation }) {
@@ -60,6 +61,21 @@ export default function CameraScreen({ navigation }) {
       setCameraType('back')
     }
   }
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setPreviewVisible(true);
+      setCapturedImage(result);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -138,17 +154,26 @@ export default function CameraScreen({ navigation }) {
                     position: 'absolute',
                     bottom: 0,
                     flexDirection: 'row',
-                    flex: 1,
                     width: '100%',
-                    padding: 20,
-                    justifyContent: 'space-between'
+                    marginBottom: 20
                   }}
                 >
                   <View
                     style={{
+                      position: 'absolute',
+                      zIndex: 1
+                    }}
+                  >
+                    <Button
+                      onPress={pickImage}
+                      title='Select Image'
+                    />
+                  </View>
+                  <View
+                    style={{
                       alignSelf: 'center',
+                      alignItems: 'center',
                       flex: 1,
-                      alignItems: 'center'
                     }}
                   >
                     <TouchableOpacity
@@ -156,9 +181,9 @@ export default function CameraScreen({ navigation }) {
                       style={{
                         width: 70,
                         height: 70,
-                        bottom: 0,
+                        bottom: 10,
                         borderRadius: 50,
-                        backgroundColor: '#fff'
+                        backgroundColor: '#fff',
                       }}
                     />
                   </View>
