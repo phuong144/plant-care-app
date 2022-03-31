@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Image, StyleSheet, Linking } from 'react-native';
+import { Text, View, StyleSheet, Linking, Dimensions } from 'react-native';
 import { retrievePlantData } from '../services/plants';
+import { Image, CacheManager } from "react-native-expo-image-cache";
 
 export default function PlantInfo({ route, navigation }) {
   const [plantData, setPlantData] = useState({});
+  const [cachePlantImg, setCachePlantImg] = useState("");
   const { base64 } = route.params;
 
   const getPlantData = async () => {
@@ -11,36 +13,44 @@ export default function PlantInfo({ route, navigation }) {
       "base64": base64,
     }
     const data = await retrievePlantData(dataObj);
+    const path = await CacheManager.get(plantData.plantData.images[0].url).getPath();
     setPlantData(data);
+    setCachePlantImg(path);
   }
 
   useEffect(() => {
-    getPlantData();
+    let isApiSubscribed = true;
+
+    if (isApiSubscribed) {
+      getPlantData();
+    }
+
+    return () => {
+      isApiSubscribed = false;
+    }
   }, [])
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {Object.keys(plantData).length == 0 ?
-        <View>
+        <View style={styles.loading}>
           <Image
             style={styles.image}
             source={require('../../assets/Plant.png')}
           />
-          <Text style={styles.loading}>Loading...</Text>
+          <Text style={{ textAlign: 'center' }}>Loading...</Text>
         </View>
         :
         <View>
-          <Text style={styles.plantName}>
-            Plant name: {plantData.plantData.suggestions[0]['plant_name']}
+          <Text style={styles.plantName} testID='plant-name'>
+            {plantData.plantData.suggestions[0]['plant_name']}
           </Text>
           <Image
             style={styles.image}
-            source={{
-              uri: plantData.plantData.images[0].url,
-            }}
+            uri={cachePlantImg}
           />
-          <Text style={styles.description}>
-            Plant Description: {plantData.plantData.suggestions[0]['plant_details']['wiki_description'].value.split('.')[0]}
+          <Text style={styles.description} testID='plant-description'>
+            {plantData.plantData.suggestions[0]['plant_details']['wiki_description'].value.split('.')[0]}
           </Text>
 
           <Text style={styles.url} onPress={() => Linking.openURL(plantData.url)}>
@@ -61,9 +71,10 @@ const styles = StyleSheet.create({
   image: {
     width: 250,
     height: 250,
+    borderRadius: 50,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 10
+
   },
   description: {
     margin: 10
@@ -74,6 +85,11 @@ const styles = StyleSheet.create({
     margin: 10
   },
   loading: {
-    textAlign: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginBottom: 50
+
   }
 });
