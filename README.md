@@ -18,6 +18,10 @@ Planter was written using Expo React Native for the front-end and Node/Express f
 
 Expo was the ideal technology since this app was a small scale project that needed ease of access to a camera by using mobile devices. Node and Express are comfort technologies to develop APIs.
 
+# App Flow / Architecture
+
+<img width="1080" alt="Untitled" src="https://user-images.githubusercontent.com/42525344/164076864-5b9547f6-f2c1-4ec9-a0fa-15327f035ffa.png">
+
 # Credits / Takeaways
 
 My friend, Vania Gunawan, was the inspiration for building this application. She introduced to me that she had plants that she didn't know how to best take care of, let alone identify the plant to even search up results. Although there exists some popular plant apps, none that she or I were aware of had the feature to simply scan the plant and give insight on how to best take care of it, which is why I built Planter!
