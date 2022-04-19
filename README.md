@@ -4,6 +4,12 @@ Notice a plant in your household that's starting to wilt despite your best effor
 
 Planter is a mobile application that gives you information on how to best take care of a plant simply by taking a picture of it.
 
+# Demo
+
+https://user-images.githubusercontent.com/42525344/164070327-bf0a30b1-44a7-413c-8f3c-a4d29405fd67.mov
+
+In this demo, we use a simulator and choose an image from our library. The application is capable of taking a picture and using that photo instead.
+
 # Technologies
 
 This mobile application utilizes the Plant.ID image recognition API to determine what type of plant was scanned. Once data is returned from the Plant.ID API, the app is web scraping from Plantcaretoday's website that has a searchable repository of articles on how to best take care of that plant.
