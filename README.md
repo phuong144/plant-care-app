@@ -6,7 +6,7 @@ Planter is a mobile application that gives you information on how to best take c
 
 # Demo
 
-https://user-images.githubusercontent.com/42525344/164070327-bf0a30b1-44a7-413c-8f3c-a4d29405fd67.mov
+https://user-images.githubusercontent.com/42525344/164072854-63544ef8-b149-4e18-93d1-c8ed94bc67cb.mov
 
 In this demo, we use a simulator and choose an image from our library. The application is capable of taking a picture and using that photo instead.
 
