@@ -20,6 +20,6 @@ Expo was the ideal technology since this app was a small scale project that need
 
 # Credits / Takeaways
 
-My friend, Vania Gunawan, was the inspiration for building this application. She introduced to me that she had plants that she didn't know how to best take care of, let alone identify the plant to even search up results. Although there exists some popular plant apps, none that she or I were are of had the feature to simply scan the plant and give insight on how to best take care of it, which is why I built Planter!
+My friend, Vania Gunawan, was the inspiration for building this application. She introduced to me that she had plants that she didn't know how to best take care of, let alone identify the plant to even search up results. Although there exists some popular plant apps, none that she or I were aware of had the feature to simply scan the plant and give insight on how to best take care of it, which is why I built Planter!
 
 Planter was a personal project and building it out was super fun! I got to integrate 3rd party APIs and learned more about web scraping.
