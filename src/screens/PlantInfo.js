@@ -5,7 +5,6 @@ import { CacheManager } from "react-native-expo-image-cache";
 
 export default function PlantInfo({ route, navigation }) {
   const [plantData, setPlantData] = useState({});
-  const [cachePlantImg, setCachePlantImg] = useState("");
   const { base64 } = route.params;
 
   const getPlantData = async () => {
@@ -18,9 +17,7 @@ export default function PlantInfo({ route, navigation }) {
       navigation.navigate("Camera")
       return;
     }
-    const path = await CacheManager.get(plantData.plantData.images[0].url).getPath();
     setPlantData(data);
-    setCachePlantImg(path);
   }
 
   useEffect(() => {
@@ -53,7 +50,7 @@ export default function PlantInfo({ route, navigation }) {
           <Image
             style={styles.image}
             source={{
-              uri: cachePlantImg
+              uri: plantData.plantData.images[0].url,
             }}
           />
           <Text style={styles.description} testID='plant-description'>
